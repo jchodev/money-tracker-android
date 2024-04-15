@@ -33,7 +33,7 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.androidx.test.core)
-    //androidTestImplementation(project(":core:testing"))
+    androidTestImplementation(project(":core:testing"))
 
     //timber
     implementation(libs.timber)

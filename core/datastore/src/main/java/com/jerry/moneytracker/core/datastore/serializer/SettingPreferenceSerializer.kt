@@ -1,4 +1,4 @@
-package com.jerryalberto.mmas.core.datastore.serializer
+package com.jerry.moneytracker.core.datastore.serializer
 
 import androidx.datastore.core.Serializer
 import com.jerry.moneytracker.core.datastore.model.SettingPreference

@@ -1,0 +1,36 @@
+package com.jerry.moneytracker.core.ui.ext
+
+import com.jerry.moneytracker.core.model.data.Setting
+import java.text.NumberFormat
+import java.util.Locale
+
+
+fun Double.formatAmount(setting: Setting = Setting(), withCurrencySymbol:Boolean = true, withPlus: Boolean = false): String {
+    //negative
+    val isNegative = this < 0.0
+    val amountForCalc = if (isNegative){
+        this * -1
+    } else {
+        this
+    }
+
+    val format: NumberFormat = if (withCurrencySymbol) {
+        NumberFormat.getCurrencyInstance(Locale("", setting.countryCode ))
+    } else {
+        NumberFormat.getInstance()
+    }
+    format.minimumFractionDigits = 2
+    format.maximumFractionDigits = 2
+
+    val formattedStr = format.format(amountForCalc / 100).replace(" ", " ")
+
+    return if (isNegative) {
+        "- ".plus(formattedStr)
+    } else {
+        if (withPlus){
+            "+ ".plus(formattedStr)
+        } else {
+            formattedStr
+        }
+    }
+}

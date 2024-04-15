@@ -13,6 +13,8 @@ class TransactionsDataTestTubs {
 
     companion object {
 
+        val mockTransactionDateMillis = 1655187200000L //"2022-06-14"
+
         val currentDateCalendar: Calendar by lazy {
             getCurrentDateCalendarInstance()
         }

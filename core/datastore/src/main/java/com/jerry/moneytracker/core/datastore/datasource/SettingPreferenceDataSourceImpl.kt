@@ -3,7 +3,7 @@ package com.jerry.moneytracker.core.datastore.datasource
 import android.content.Context
 import androidx.datastore.dataStore
 import com.jerry.moneytracker.core.datastore.model.SettingPreference
-import com.jerryalberto.mmas.core.datastore.serializer.SettingPreferenceSerializer
+import com.jerry.moneytracker.core.datastore.serializer.SettingPreferenceSerializer
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
