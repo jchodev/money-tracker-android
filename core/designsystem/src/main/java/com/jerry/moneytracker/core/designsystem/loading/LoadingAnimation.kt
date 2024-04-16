@@ -13,9 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.jerry.moneytracker.core.designsystem.R
 import com.jerry.moneytracker.core.designsystem.theme.MoneyTrackerTheme
 import kotlinx.coroutines.delay
 
@@ -32,6 +36,7 @@ fun LoadingAnimation(
         remember { Animatable(initialValue = 0f) },
         remember { Animatable(initialValue = 0f) }
     )
+    val loadingContentDesc = stringResource(id = R.string.core_designsystem_loading)
 
     circles.forEachIndexed { index, animatable ->
         LaunchedEffect(key1 = animatable) {
@@ -56,7 +61,9 @@ fun LoadingAnimation(
     val distance = with(LocalDensity.current) { travelDistance.toPx() }
     val lastCircle = circleValues.size - 1
 
-    Row(modifier = modifier) {
+    Row(modifier = modifier.semantics {
+        contentDescription = loadingContentDesc
+    }) {
         circleValues.forEachIndexed { index, value ->
             Box(modifier = Modifier
                 .size(circleSize)

@@ -4,7 +4,7 @@ import app.cash.turbine.test
 import com.jerry.moneytracker.core.common.result.asResult
 import com.jerry.moneytracker.core.database.model.toTransaction
 import com.jerry.moneytracker.core.domain.repository.TransactionRepository
-import com.jerry.moneytracker.core.testing.TransactionsDataTestTubs
+import com.jerry.moneytracker.core.testing.tubs.TransactionsDataTestTubs
 
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -29,7 +29,7 @@ import com.jerry.moneytracker.core.database.model.TransactionYearMonthQueryResul
 import com.jerry.moneytracker.core.model.data.AccountBalanceDataType
 import com.jerry.moneytracker.core.model.data.Transaction
 import com.jerry.moneytracker.core.model.data.TransactionSummary
-import com.jerry.moneytracker.core.testing.ExceptionTestTubs
+import com.jerry.moneytracker.core.testing.tubs.ExceptionTestTubs
 
 @ExperimentalCoroutinesApi
 @MockKExtension.ConfirmVerification
@@ -314,7 +314,8 @@ class TransactionUseCaseTest {
     //getListOfYearMonth
     @Test
     fun `test TransactionUseCase getListOfYearMonth success case`() = runTest {
-        coEvery { transactionRepository.getListOfYearMonth() } returns flowOf(TransactionsDataTestTubs.transactionYearMonthQueryResultList)
+        coEvery { transactionRepository.getListOfYearMonth() } returns flowOf(
+            TransactionsDataTestTubs.transactionYearMonthQueryResultList)
 
         //action and verify
         transactionUseCase.getListOfYearMonth().test {

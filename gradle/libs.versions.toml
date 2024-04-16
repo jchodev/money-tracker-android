@@ -54,6 +54,7 @@ squareup-javapoet = "1.13.0"
 hilt-navigation-compose = "1.1.0"
 
 kotlinx-serialization-json = "1.5.1"
+kotlinx-coroutines-core-jvm = "1.8.0"
 
 #turbine
 turbine = "1.1.0"

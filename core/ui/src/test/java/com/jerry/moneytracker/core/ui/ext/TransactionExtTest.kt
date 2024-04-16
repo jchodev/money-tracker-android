@@ -4,7 +4,7 @@ import com.jerry.moneytracker.core.model.data.Setting
 import com.jerry.moneytracker.core.model.data.TimeFormatType
 import com.jerry.moneytracker.core.model.data.Transaction
 import com.jerry.moneytracker.core.model.data.TransactionType
-import com.jerry.moneytracker.core.testing.TransactionsDataTestTubs
+import com.jerry.moneytracker.core.testing.tubs.TransactionsDataTestTubs
 import com.jerry.moneytracker.core.ui.constants.ColorConstant
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

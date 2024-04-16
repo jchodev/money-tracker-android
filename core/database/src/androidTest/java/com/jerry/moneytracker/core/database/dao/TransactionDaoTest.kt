@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.jerry.moneytracker.core.database.MoneyDatabase
-import com.jerry.moneytracker.core.testing.TransactionsDataTestTubs
+import com.jerry.moneytracker.core.testing.tubs.TransactionsDataTestTubs
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After

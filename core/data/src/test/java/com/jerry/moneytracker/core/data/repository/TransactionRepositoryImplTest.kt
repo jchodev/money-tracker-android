@@ -7,7 +7,7 @@ import com.jerry.moneytracker.core.database.model.toTransaction
 import com.jerry.moneytracker.core.ext.convertMillisToYearMonthDay
 import com.jerry.moneytracker.core.ext.convertToDateMillis
 import com.jerry.moneytracker.core.model.data.Transaction
-import com.jerry.moneytracker.core.testing.TransactionsDataTestTubs
+import com.jerry.moneytracker.core.testing.tubs.TransactionsDataTestTubs
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coJustRun

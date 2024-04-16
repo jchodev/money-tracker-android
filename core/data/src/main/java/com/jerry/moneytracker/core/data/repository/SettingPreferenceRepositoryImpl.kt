@@ -1,7 +1,7 @@
 package com.jerry.moneytracker.core.data.repository
 
 import com.jerry.moneytracker.core.common.network.Dispatcher
-import com.jerry.moneytracker.core.common.network.MmasDispatchers
+import com.jerry.moneytracker.core.common.network.MoneyDispatchers
 import com.jerry.moneytracker.core.data.model.toSettingPreference
 import com.jerry.moneytracker.core.datastore.datasource.SettingPreferenceDataSource
 import com.jerry.moneytracker.core.datastore.model.toSetting
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 class SettingPreferenceRepositoryImpl @Inject constructor(
     private val settingPreferenceDataSource: SettingPreferenceDataSource,
-    @Dispatcher(MmasDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
+    @Dispatcher(MoneyDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
 ): SettingPreferenceRepository {
 
     override suspend fun saveSetting(setting: Setting) {

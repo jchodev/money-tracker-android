@@ -1,7 +1,7 @@
 package com.jerry.moneytracker.core.ui.ext
 
 import com.jerry.moneytracker.core.model.data.Setting
-import com.jerry.moneytracker.core.testing.SettingDataTestTubs
+import com.jerry.moneytracker.core.testing.tubs.SettingDataTestTubs
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

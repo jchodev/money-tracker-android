@@ -1,4 +1,4 @@
-package com.jerry.moneytracker.core.testing
+package com.jerry.moneytracker.core.testing.tubs
 
 
 import com.jerry.moneytracker.core.database.model.TransactionEntity

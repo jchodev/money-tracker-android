@@ -82,6 +82,7 @@ private fun basicApply(project: Project, withJetpack: Boolean = true){
             packagingOptions {
                 resources {
                     excludes += "/META-INF/{AL2.0,LGPL2.1}"
+                    excludes += "META-INF/*"
                 }
             }
 
