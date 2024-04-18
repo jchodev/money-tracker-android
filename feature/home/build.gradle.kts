@@ -6,10 +6,12 @@ plugins {
     id("module-plugin")
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.google.hilt)
+
+    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.jerry.moneytracker.feature.setting"
+    namespace = "com.jerry.moneytracker.feature.home"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -20,12 +22,13 @@ android {
 }
 
 dependencies {
-
-    implementation(project(":core:designsystem"))
-    implementation(project(":core:ui"))
-    implementation(project(":core:domain"))
-    implementation(project(":core:model"))
     implementation(project(":core:common"))
+    implementation(project(":core:model"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:designsystem"))
+    implementation(project(":core:data"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:database"))
     implementation(project(":core:testing"))
 
     implementation(libs.androidx.core)
@@ -52,8 +55,6 @@ dependencies {
     testImplementation(project(":core:testing"))
 
     //UI testing
-//    androidTestImplementation ("androidx.compose.ui:ui-test-junit4")
-//    debugImplementation ("androidx.compose.ui:ui-test-manifest")
     androidTestImplementation (libs.compose.ui.junitfour)
     debugImplementation (libs.compose.ui.test.manifest)
 }

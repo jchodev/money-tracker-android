@@ -12,16 +12,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.jerry.moneytracker.core.designsystem.theme.MoneyTrackerTheme
 import com.jerry.moneytracker.core.designsystem.theme.dimens
+import com.jerry.moneytracker.core.designsystem.R
 
 @Composable
 fun SuccessDialog(
-    text: String = "this is text",
+    text: String = stringResource(id = R.string.core_designsystem_completed),
     onDismissRequest: () -> Unit = {},
 ) {
     CustomAlertDialog(
         icon = {
             Icon(
-                modifier = Modifier.size(MaterialTheme.dimens.dimen160).padding(top = MaterialTheme.dimens.dimen32),
+                modifier = Modifier
+                    .size(MaterialTheme.dimens.dimen160)
+                    .padding(top = MaterialTheme.dimens.dimen32),
                 tint = MaterialTheme.colorScheme.primary,
                 imageVector = Icons.Rounded.CheckCircleOutline,
                 contentDescription = null

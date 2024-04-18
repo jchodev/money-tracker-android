@@ -1,6 +1,5 @@
 package com.jerry.moneytracker.feature.setting.ui.screen
 
-import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -49,7 +48,7 @@ import com.jerry.moneytracker.feature.setting.ui.viewmodel.SettingViewModel
 import timber.log.Timber
 
 @Composable
-internal fun SettingRoute(
+fun SettingRoute(
     viewModel: SettingViewModel = hiltViewModel()
 ){
     val clearDataUIState by viewModel.clearDataUIState.collectAsStateWithLifecycle()
@@ -117,7 +116,6 @@ internal fun SettingScreen(
             }
             is ClearDataUIState.Success -> {
                 SuccessDialog(
-                    text =  stringResource(id = R.string.feature_setting_completed),
                     onDismissRequest = onSuccessDismiss
                 )
             }

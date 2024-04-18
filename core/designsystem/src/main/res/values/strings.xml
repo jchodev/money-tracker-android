@@ -6,6 +6,8 @@
     <string name="core_designsystem_confirm">Confirm</string>
     <string name="core_designsystem_retry">Retry</string>
     <string name="core_designsystem_loading">Loading</string>
+    <string name="core_designsystem_completed">Completed</string>
+
 
     <string name="core_designsystem_search">Search ...</string>
 </resources>

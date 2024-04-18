@@ -23,11 +23,8 @@ class SettingScreenTest {
     @get:Rule
     val rule = createComposeRule()
 
-//    @get:Rule
-//    val composeTestRule = createAndroidComposeRule<ComponentActivity>()
-
     @Test
-    fun loading_showsLoading() {
+    fun loading_test() {
         val context: Context = InstrumentationRegistry.getInstrumentation().targetContext
         rule.setContent {
             MoneyTrackerTheme {
@@ -45,7 +42,7 @@ class SettingScreenTest {
     }
 
     @Test
-    fun loading_showsInitial() {
+    fun init_test() {
         val context: Context = InstrumentationRegistry.getInstrumentation().targetContext
         rule.setContent {
             MoneyTrackerTheme {
@@ -69,7 +66,7 @@ class SettingScreenTest {
     }
 
     @Test
-    fun loading_showsError() {
+    fun error_test() {
         rule.setContent {
             MoneyTrackerTheme {
                 SettingScreen(
