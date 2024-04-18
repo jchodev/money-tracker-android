@@ -21,10 +21,10 @@ fun ExceptionErrorDialog(
 @Composable
 private fun getMessageFromException(exception: Throwable): String{
     val errorMessage = exception.message ?: ""
-    if (errorMessage.isEmpty()){
-        return stringResource(id = R.string.core_ui_common_error)
+    return if (errorMessage.isEmpty()){
+        stringResource(id = R.string.core_ui_common_error)
     }
     else {
-        return errorMessage
+        errorMessage
     }
 }

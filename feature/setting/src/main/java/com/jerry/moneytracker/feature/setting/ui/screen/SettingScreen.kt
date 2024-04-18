@@ -25,6 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jerry.moneytracker.core.designsystem.dialog.ConfirmDialog
+import com.jerry.moneytracker.core.designsystem.dialog.SuccessDialog
 import com.jerry.moneytracker.core.designsystem.theme.MoneyTrackerTheme
 import com.jerry.moneytracker.core.designsystem.theme.dimens
 import com.jerry.moneytracker.core.designsystem.topbar.MmaTopBar
@@ -32,6 +33,7 @@ import com.jerry.moneytracker.core.model.data.CountryData
 import com.jerry.moneytracker.core.model.data.Setting
 import com.jerry.moneytracker.core.model.data.ThemeType
 import com.jerry.moneytracker.core.model.data.TimeFormatType
+import com.jerry.moneytracker.core.ui.component.ExceptionErrorDialog
 import com.jerry.moneytracker.core.ui.component.LoadingCompose
 import com.jerry.moneytracker.core.ui.ext.toCountryData
 import com.jerry.moneytracker.core.ui.preview.DevicePreviews
@@ -42,7 +44,7 @@ import com.jerry.moneytracker.feature.setting.ui.component.dialog.DateFormatDial
 import com.jerry.moneytracker.feature.setting.ui.component.dialog.ThemeDialog
 import com.jerry.moneytracker.feature.setting.ui.component.dialog.TimeFormatDialog
 import com.jerry.moneytracker.feature.setting.ui.ext.getString
-import com.jerry.moneytracker.feature.setting.ui.viewmodel.SettingUIState
+import com.jerry.moneytracker.feature.setting.ui.viewmodel.ClearDataUIState
 import com.jerry.moneytracker.feature.setting.ui.viewmodel.SettingViewModel
 import timber.log.Timber
 
@@ -50,9 +52,9 @@ import timber.log.Timber
 internal fun SettingRoute(
     viewModel: SettingViewModel = hiltViewModel()
 ){
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val clearDataUIState by viewModel.clearDataUIState.collectAsStateWithLifecycle()
     SettingScreen(
-        uiState = uiState,
+        clearDataUIState = clearDataUIState,
         setting = viewModel.settingState.collectAsStateWithLifecycle().value,
         countryList = viewModel.getCountryList(),
         onCountrySelected = {
@@ -64,13 +66,16 @@ internal fun SettingRoute(
         onTimeFormatSelected = viewModel::onTimeFormatSelected,
         themeList = viewModel.getThemeList(),
         onThemeSelected =  viewModel::onThemeSelected,
-        onConfirmClearData = viewModel::clearData
+        onConfirmClearData = viewModel::clearData,
+        onErrorDismiss = viewModel::resultUiState,
+        onErrorRetry = viewModel::clearData,
+        onSuccessDismiss = viewModel::resultUiState,
     )
 }
 
 @Composable
 internal fun SettingScreen(
-    uiState: SettingUIState,
+    clearDataUIState: ClearDataUIState,
     setting: Setting = Setting(),
     countryList: List<CountryData> = emptyList(),
     dateFormatList: List<String> = emptyList(),
@@ -81,30 +86,44 @@ internal fun SettingScreen(
     onTimeFormatSelected: (TimeFormatType) -> Unit = {},
     onThemeSelected: (ThemeType) -> Unit = {},
     onConfirmClearData: () -> Unit = {},
+    onErrorDismiss:() -> Unit = {},
+    onErrorRetry:() -> Unit = {},
+    onSuccessDismiss:() -> Unit = {},
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        when (uiState) {
-            is SettingUIState.Loading -> LoadingCompose()
-            else -> {
-                SettingScreenContent(
-                    setting = setting,
-                    countryList = countryList,
-                    dateFormatList = dateFormatList,
-                    timeFormatList = timeFormatList,
-                    themeList = themeList,
-                    onCountrySelected = onCountrySelected,
-                    onDateFormatSelected = onDateFormatSelected,
-                    onTimeFormatSelected = onTimeFormatSelected,
-                    onThemeSelected= onThemeSelected,
-                    onConfirmClearData = onConfirmClearData
+        SettingScreenContent(
+            setting = setting,
+            countryList = countryList,
+            dateFormatList = dateFormatList,
+            timeFormatList = timeFormatList,
+            themeList = themeList,
+            onCountrySelected = onCountrySelected,
+            onDateFormatSelected = onDateFormatSelected,
+            onTimeFormatSelected = onTimeFormatSelected,
+            onThemeSelected= onThemeSelected,
+            onConfirmClearData = onConfirmClearData
+        )
+
+        when (clearDataUIState) {
+            is ClearDataUIState.Loading -> LoadingCompose()
+            is ClearDataUIState.Error -> {
+                ExceptionErrorDialog(
+                    exception = clearDataUIState.exception,
+                    onDismissRequest = onErrorDismiss,
+                    onRetryRequest = onErrorRetry
                 )
             }
-        }
+            is ClearDataUIState.Success -> {
+                SuccessDialog(
+                    text =  stringResource(id = R.string.feature_setting_completed),
+                    onDismissRequest = onSuccessDismiss
+                )
+            }
+            else ->{
 
-        if (uiState is SettingUIState.Success){
-            Toast.makeText(LocalContext.current, stringResource(id = R.string.feature_setting_completed), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

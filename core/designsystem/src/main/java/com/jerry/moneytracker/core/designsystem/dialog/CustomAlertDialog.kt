@@ -36,7 +36,7 @@ fun CustomAlertDialog(
     leftBtnStr: String = "Dismiss",
     onLeftClick: () -> Unit = {},
 
-    rightBtnStr: String = "OK",
+    rightBtnStr: String? = "OK",
     onRightClick: () -> Unit = {},
 ) {
     Dialog(
@@ -71,7 +71,7 @@ private fun AlertDialogContent(
     leftBtnStr: String = "Dismiss",
     onLeftClick: () -> Unit = {},
 
-    rightBtnStr: String = "OK",
+    rightBtnStr: String? = "OK",
     onRightClick: () -> Unit = {}
 ){
     Card(
@@ -133,13 +133,15 @@ private fun AlertDialogContent(
                         modifier = Modifier.padding(top = MaterialTheme.dimens.dimen8, bottom = MaterialTheme.dimens.dimen8)
                     )
                 }
-                TextButton(onClick =onRightClick) {
-                    Text(
-                        text = rightBtnStr,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer,
-                        modifier = Modifier.padding(top = MaterialTheme.dimens.dimen8, bottom = MaterialTheme.dimens.dimen8)
-                    )
+                rightBtnStr?.let {
+                    TextButton(onClick = onRightClick) {
+                        Text(
+                            text = it,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                            modifier = Modifier.padding(top = MaterialTheme.dimens.dimen8, bottom = MaterialTheme.dimens.dimen8)
+                        )
+                    }
                 }
             }
         }

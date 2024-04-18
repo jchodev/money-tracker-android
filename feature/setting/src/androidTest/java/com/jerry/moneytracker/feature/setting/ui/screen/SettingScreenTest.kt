@@ -11,8 +11,9 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.test.platform.app.InstrumentationRegistry
 import com.jerry.moneytracker.core.designsystem.theme.MoneyTrackerTheme
 import com.jerry.moneytracker.core.model.data.Setting
+import com.jerry.moneytracker.core.testing.tubs.ExceptionTestTubs
 import com.jerry.moneytracker.feature.setting.R
-import com.jerry.moneytracker.feature.setting.ui.viewmodel.SettingUIState
+import com.jerry.moneytracker.feature.setting.ui.viewmodel.ClearDataUIState
 import org.junit.Rule
 import org.junit.Test
 
@@ -31,7 +32,7 @@ class SettingScreenTest {
         rule.setContent {
             MoneyTrackerTheme {
                 SettingScreen(
-                    uiState = SettingUIState.Loading
+                    clearDataUIState = ClearDataUIState.Loading
                 )
             }
         }
@@ -44,12 +45,12 @@ class SettingScreenTest {
     }
 
     @Test
-    fun loading_showsSuccess() {
+    fun loading_showsInitial() {
         val context: Context = InstrumentationRegistry.getInstrumentation().targetContext
         rule.setContent {
             MoneyTrackerTheme {
                 SettingScreen(
-                    uiState = SettingUIState.Success,
+                    clearDataUIState = ClearDataUIState.Initial,
                     setting = Setting(
                         countryCode = "HK",
                         dateFormat = "yyyy-MM-dd"
@@ -65,5 +66,35 @@ class SettingScreenTest {
         rule.onNodeWithText(context.resources.getString(R.string.feature_setting_time_format)).assertExists()
         rule.onNodeWithText(context.resources.getString(R.string.feature_setting_theme)).assertExists()
 
+    }
+
+    @Test
+    fun loading_showsError() {
+        rule.setContent {
+            MoneyTrackerTheme {
+                SettingScreen(
+                    clearDataUIState = ClearDataUIState.Error(exception = ExceptionTestTubs.NormalException),
+                )
+            }
+        }
+
+        //verify
+        rule.onNodeWithText(ExceptionTestTubs.exceptionStr).assertExists()
+    }
+
+    @Test
+    fun loading_showsSuccess() {
+        val context: Context = InstrumentationRegistry.getInstrumentation().targetContext
+
+        rule.setContent {
+            MoneyTrackerTheme {
+                SettingScreen(
+                    clearDataUIState = ClearDataUIState.Success,
+                )
+            }
+        }
+
+        //verify
+        rule.onNodeWithText(context.resources.getString(R.string.feature_setting_completed)).assertExists()
     }
 }

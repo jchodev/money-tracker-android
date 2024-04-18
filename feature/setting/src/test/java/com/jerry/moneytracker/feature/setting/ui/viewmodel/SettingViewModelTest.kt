@@ -107,14 +107,14 @@ class SettingViewModelTest {
         //assign
         coEvery { transactionUseCase.deleteAllTransaction() } returns flowOf(Unit)
 
-        viewModel.uiState.test {
+        viewModel.clearDataUIState.test {
             //action
             viewModel.clearData()
 
             //verify
-            assertEquals(SettingUIState.Initial, awaitItem())
-            assertEquals(SettingUIState.Loading, awaitItem())
-            assertEquals(SettingUIState.Success, awaitItem())
+            assertEquals(ClearDataUIState.Initial, awaitItem())
+            assertEquals(ClearDataUIState.Loading, awaitItem())
+            assertEquals(ClearDataUIState.Success, awaitItem())
         }
     }
 
@@ -128,12 +128,12 @@ class SettingViewModelTest {
         //action
         viewModel.clearData()
 
-        viewModel.uiState.test {
+        viewModel.clearDataUIState.test {
             //verify
-            assertEquals(SettingUIState.Initial, awaitItem())
-            assertEquals(SettingUIState.Loading, awaitItem())
+            assertEquals(ClearDataUIState.Initial, awaitItem())
+            assertEquals(ClearDataUIState.Loading, awaitItem())
             when (val errorResult = awaitItem()) {
-                is SettingUIState.Error -> {
+                is ClearDataUIState.Error -> {
                     Assertions.assertEquals(
                         ExceptionTestTubs.exceptionStr,
                         errorResult.exception.message,

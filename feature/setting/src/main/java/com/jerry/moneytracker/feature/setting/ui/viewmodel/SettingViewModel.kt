@@ -28,8 +28,8 @@ class SettingViewModel @Inject constructor(
     private val transactionUseCase: TransactionUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<SettingUIState>(SettingUIState.Initial)
-    val uiState = _uiState.asStateFlow()
+    private val _clearDataUIState = MutableStateFlow<ClearDataUIState>(ClearDataUIState.Initial)
+    val clearDataUIState = _clearDataUIState.asStateFlow()
 
     //
     private val _fetchSettingState = MutableStateFlow<FetchSettingDataState>(FetchSettingDataState.Loading)
@@ -65,22 +65,21 @@ class SettingViewModel @Inject constructor(
         Timber.d("SettingViewModel::clearData")
         viewModelScope.launch {
             transactionUseCase.deleteAllTransaction().asResult().collectLatest {result->
-                _uiState.value = when (result) {
+                _clearDataUIState.value = when (result) {
                     is Result.Success -> {
-                        resultUiState()
-                        SettingUIState.Success
+                        ClearDataUIState.Success
                     }
-                    is Result.Loading -> SettingUIState.Loading
-                    is Result.Error -> SettingUIState.Error(exception = result.exception)
+                    is Result.Loading -> ClearDataUIState.Loading
+                    is Result.Error -> ClearDataUIState.Error(exception = result.exception)
                 }
             }
         }
     }
 
-    private fun resultUiState(){
+    fun resultUiState(){
         viewModelScope.launch {
             delay(500)
-            _uiState.value = SettingUIState.Initial
+            _clearDataUIState.value = ClearDataUIState.Initial
         }
     }
 
@@ -144,9 +143,9 @@ sealed interface FetchSettingDataState {
     data class Error(val exception: Throwable) : FetchSettingDataState
 }
 
-sealed interface SettingUIState {
-    data object Initial : SettingUIState
-    data object Loading : SettingUIState
-    data object Success : SettingUIState
-    data class Error(val exception: Throwable) : SettingUIState
+sealed interface ClearDataUIState {
+    data object Initial : ClearDataUIState
+    data object Loading : ClearDataUIState
+    data object Success : ClearDataUIState
+    data class Error(val exception: Throwable) : ClearDataUIState
 }
