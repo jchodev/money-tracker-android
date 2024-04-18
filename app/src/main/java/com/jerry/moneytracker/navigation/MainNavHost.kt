@@ -37,10 +37,10 @@ import com.jerry.moneytracker.components.BottomBar
 import com.jerry.moneytracker.components.BottomBarItem
 import com.jerry.moneytracker.core.ui.navigation.MainRoute
 import com.jerry.moneytracker.feature.home.ui.screen.HomeRoute
-import com.jerry.moneytracker.feature.home.ui.screen.HomeScreen
 import com.jerry.moneytracker.feature.home.ui.viewmodel.HomeScreenViewModel
 import com.jerry.moneytracker.feature.setting.ui.screen.SettingRoute
 import com.jerry.moneytracker.feature.setting.ui.viewmodel.SettingViewModel
+import com.jerry.moneytracker.feature.transaction.ui.screen.TransactionRoute
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -109,10 +109,9 @@ fun MainNavHost(
             }
 
             composable(MainRoute.TransactionScreen.route) {
-//                TransactionScreen(
-//                    setting = setting,
-//                )
-                Text ("this is TransactionScreen")
+                TransactionRoute(
+                    setting = setting,
+                )
             }
 
             composable(MainRoute.SettingScreen.route) {

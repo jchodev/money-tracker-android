@@ -32,7 +32,7 @@ dependencies {
     //implementation(project(":core:testing"))
     implementation(project(":feature:home"))
     implementation(project(":feature:setting"))
-    //implementation(project(":feature:transaction"))
+    implementation(project(":feature:transaction"))
 
     implementation(libs.androidx.core)
     implementation(libs.androidx.lifecycle)
