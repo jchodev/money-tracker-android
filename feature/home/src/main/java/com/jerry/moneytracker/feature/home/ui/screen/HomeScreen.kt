@@ -208,7 +208,7 @@ private fun HomeScreenContent(
                 Text(
                     text = stringResource(id = R.string.feature_home_title) + " (${accountBalanceDataTypeDesc})",
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    style = MaterialTheme.typography.labelLarge,
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 Spacer(modifier = Modifier.height(MaterialTheme.dimens.dimen8))
                 Text(

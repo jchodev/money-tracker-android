@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 
 import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jerry.moneytracker.core.designsystem.theme.MoneyTrackerTheme
@@ -28,6 +29,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        installSplashScreen()
 
         setContent {
             var dynamicColor = true

@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -124,22 +125,29 @@ private fun AlertDialogContent(
                 horizontalArrangement = Arrangement.SpaceAround) {
 
                 TextButton(
+                    modifier = Modifier.weight(1f),
                     onClick = onLeftClick
                 ) {
                     Text(
+
                         text = leftBtnStr,
                         fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onSecondaryContainer,
-                        modifier = Modifier.padding(top = MaterialTheme.dimens.dimen8, bottom = MaterialTheme.dimens.dimen8)
+                        modifier = Modifier.fillMaxWidth().padding(top = MaterialTheme.dimens.dimen8, bottom = MaterialTheme.dimens.dimen8)
                     )
                 }
                 rightBtnStr?.let {
-                    TextButton(onClick = onRightClick) {
+                    TextButton(
+                        modifier = Modifier.weight(1f),
+                        onClick = onRightClick
+                    ) {
                         Text(
                             text = it,
                             fontWeight = FontWeight.ExtraBold,
+                            textAlign = TextAlign.Center,
                             color = MaterialTheme.colorScheme.onSecondaryContainer,
-                            modifier = Modifier.padding(top = MaterialTheme.dimens.dimen8, bottom = MaterialTheme.dimens.dimen8)
+                            modifier = Modifier.fillMaxWidth().padding(top = MaterialTheme.dimens.dimen8, bottom = MaterialTheme.dimens.dimen8)
                         )
                     }
                 }
