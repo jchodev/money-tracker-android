@@ -2,6 +2,9 @@
 An free application for tracking your daily income and expense 
 ![100% Free! - Money Tracker](https://github.com/jchodev/money-tracker-android/assets/100594737/b1aef61c-d83c-478d-8fe3-798386d0cb15)
 
+## Google Play
+https://play.google.com/store/apps/details?id=com.jerry.moneytracker
+
 ## Screenshots:
 <img src="https://github.com/jchodev/money-tracker-android/assets/100594737/7adf2fcc-55f8-4e8f-a41b-b296d185285d" width=25% height=25%>
 <img src="https://github.com/jchodev/money-tracker-android/assets/100594737/82ff672e-c7f1-4962-a9b1-7040814b7928" width=25% height=25%>
