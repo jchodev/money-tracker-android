@@ -2,6 +2,22 @@
 An free application for tracking your daily income and expense 
 ![100% Free! - Money Tracker](https://github.com/jchodev/money-tracker-android/assets/100594737/b1aef61c-d83c-478d-8fe3-798386d0cb15)
 
+## Desription
+This project  = Clean Architecture + MVVM + Jetpack compose  
+
+Ref: https://github.com/android/nowinandroid
+
+
+## In this project, was implementation with
+
+### Clean Architecture with MVVM 
+  
+| Layer | Description |
+|----- | ------ |
+| Presentation Layer | view, view model  |
+| Domain Layer | Entities, usecase, Repository Interface |
+| Data Layer | datamapping, Repository Impl.  |
+
 ## Google Play
 https://play.google.com/store/apps/details?id=com.jerry.moneytracker
 
