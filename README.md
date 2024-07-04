@@ -35,3 +35,15 @@ https://github.com/jchodev/money-tracker-android/assets/100594737/c02c985c-ff97-
 
 ## LICENSE:
 https://github.com/jchodev/money-tracker-android/blob/main/LICENSE
+
+### Library
+
+| Library           | Used For                  | Remark |
+|-------------------|---------------------------| ------ |
+| jetpack           | Jetpack compose           | ---- |
+| hilt              | Dependency injection `di` | ------ |
+| turbine           | For testing flow          | ----|
+| timber            | Logging                   | ----|
+| moshi             | parse json                | ----|
+| Room              | local DB           | ----| 
+| junit5 + mockk              | unit test           | ----| 
