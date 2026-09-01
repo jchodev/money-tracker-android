@@ -42,12 +42,12 @@ private fun basicApply(project: Project, withJetpack: Boolean = true){
 
     if (androidExtension is BaseExtension) {
         androidExtension.apply {
-            compileSdkVersion(35)
+            compileSdkVersion(36)
             defaultConfig {
-                targetSdk = 35
+                targetSdk = 36
                 minSdk = 24
-                versionCode = 4
-                versionName = "1.2"
+                versionCode = 5
+                versionName = "1.3"
                 testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             }
             val proguardFile = "proguard-rules.pro"
